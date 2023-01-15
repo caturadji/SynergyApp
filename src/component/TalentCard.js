@@ -6,19 +6,20 @@ import {
     Image
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { TalentHobby, TalentInformation } from '../component'
+import { TalentHobby, TalentInformation } from '../component';
+import { palette } from '../styles';
 
 const TalentCard = (props) => {
-    const { item, onPress } = props;
+    const { item, onPress, onLiked } = props;
 
     const styles = StyleSheet.create({
         cardContainer: { 
             paddingHorizontal: 15
         },
         divider: { 
-            height: 2, 
+            height: 1, 
             width: '100%', 
-            backgroundColor: 'lightgrey',
+            backgroundColor: palette.neutral2,
         },
         talentContainer: {
             flex: 1,
@@ -43,7 +44,7 @@ const TalentCard = (props) => {
     return (
         <TouchableOpacity 
             style={styles.cardContainer}
-            onPress={() => onPress(item) }
+            onPress={onPress}
         >
             {/* Divider */}
             <View style={styles.divider}/>
@@ -59,7 +60,7 @@ const TalentCard = (props) => {
                 </View>
                 {/* Talent Information Container*/}
                 <View style={styles.informationContainer}>
-                    <TalentInformation item={item}/>
+                    <TalentInformation onLiked={() => onLiked(item.id)} item={item}/>
                     <TalentHobby item={item.hobby}/>
                 </View>
             </View>
@@ -69,7 +70,8 @@ const TalentCard = (props) => {
 
 TalentCard.propTypes = {
     item: PropTypes.object.isRequired,
-    onPress: PropTypes.func.isRequired
+    onPress: PropTypes.func.isRequired,
+    onLiked: PropTypes.func.isRequired
 }
 
 export default TalentCard;

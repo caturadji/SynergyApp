@@ -4,7 +4,7 @@ import {
     StyleSheet,
     View, 
 } from 'react-native';
-import { fontStyles } from '../styles';
+import { fontStyles, palette } from '../styles';
 import PropTypes from 'prop-types';
 
 const TalentHobby = (props) => {
@@ -14,11 +14,11 @@ const TalentHobby = (props) => {
         container: { 
             flexDirection: 'row',
             flexWrap: 'wrap', 
-            marginVertical: 10 
+            marginVertical: 5 
         },
         chips: {
-            borderWidth: 1,
-            borderColor: 'grey',
+            borderWidth: 0.4,
+            borderColor: palette.neutral,
             padding: 5,
             marginRight: 5,
             marginBottom: 5,
@@ -28,15 +28,26 @@ const TalentHobby = (props) => {
     return (
         <View style={styles.container}>
             {item.map((e, index) => {
-                return(
-                    <View 
-                        key={index}
-                        style={styles.chips}
-                    >
-                        <Text style={fontStyles.mainDesc}>{e}</Text>
-                    </View>
-                )
+                if (index < 4) {
+                    return(
+                        <View 
+                            key={index}
+                            style={styles.chips}
+                        >
+                            <Text style={fontStyles.mainDesc}>{e}</Text>
+                        </View>
+                    )
+                }
             })}
+            {item.length > 4 && 
+                <View style={styles.chips}>
+                    <Text 
+                        style={fontStyles.mainDesc}
+                    >
+                        +{item.length - 4}
+                    </Text>
+                </View>
+            }
         </View>
     )
 }

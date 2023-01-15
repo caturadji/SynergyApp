@@ -4,44 +4,70 @@ import {
     Text,
     StyleSheet,
     Image,
-    Button,
-    TouchableOpacity
+    TouchableOpacity,
+    useWindowDimensions
 } from "react-native";
 import { TalentInformation } from '../component';
+import { useDataContext } from '../context';
+import { fontStyles, palette } from "../styles";
+import { fallbackData } from '../data';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Detail = (props) => {
     const { navigation, route } = props;
-    const params = route.params;
+    const params = route.params ? route.params : fallbackData;
+    const { height } = useWindowDimensions();
+    const { updateLike } = useDataContext();
 
     const styles = StyleSheet.create({
         container: { 
             flex: 1, 
-            backgroundColor: 'white'
+            backgroundColor: palette.primary
         },
         imageContainer : { 
-            flex: 0.75 
+            flex: 0.77
         },
         image: {
             width: '100%',
             height: '100%',
         },
         buttonCircle: {
-            padding: 10,
-            borderRadius: 100,
-            backgroundColor: 'lightgrey',
+            padding: 5,
             position: 'absolute',
             top: 25,
             left: 15,
-            opacity: 1,
             justifyContent: 'center',
             alignItems: 'center'
         },
         talentContainer: { 
-            flex: 0.25, 
+            height: 0.25 * height, 
             padding: 15, 
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20, 
+            backgroundColor: palette.primary, 
+            position: 'absolute',
+            width: '100%',
+            bottom: 0
         },
         buttonText: {
-            fontSize: 18
+            fontSize: 16
+        },
+        button: {
+            width: '100%',
+            backgroundColor: palette.accent,
+            borderRadius: 40,
+            padding: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginVertical: 5
+        },
+        buttonTransparent : { 
+            backgroundColor: palette.neutral2, 
+            height: 45, 
+            width: 45,
+            position: 'absolute',
+            borderRadius: 100,
+            opacity: 0.4
         }
     })
 
@@ -60,17 +86,29 @@ const Detail = (props) => {
                     onPress={navigation.goBack}
                     style={styles.buttonCircle}
                 >
-                    <Text style={styles.buttonText}>{'< Back'}</Text>
+                    <View style={styles.buttonTransparent}/>
+                    <AntDesign name={'arrowleft'} size={25}/>
                 </TouchableOpacity>
             </View>
             {/* Talent Information */}
             <View style={styles.talentContainer}>
                 {/* Talent Information */}
-                <TalentInformation item={params} isDetail={true}/>
+                <TalentInformation 
+                    onLiked={() => updateLike(params.id)} 
+                    item={params} 
+                    isDetail={true}
+                />
                 {/* Button */}
-                <View>
-                    <Button title="Start Chatting"/>
-                </View>
+                <TouchableOpacity style={styles.button}> 
+                    <Text 
+                        style={[
+                            fontStyles.buttonText,
+                            { color: palette.primary }
+                        ]}
+                    >
+                        Invite to casting
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
