@@ -17,9 +17,9 @@ import { fontStyles, palette } from "../styles";
 import { useDataContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const group = 'group.asap';
+const group = 'group.talents';
 
-const SharedStorage = NativeModules.SharedStorage
+const SharedStorage = NativeModules.SharedStorage;
 
 const Main = (props) => {
     const { navigation } = props;
@@ -36,16 +36,21 @@ const Main = (props) => {
     }
 
     const shareData = async () => {
+        let widgetData = listTalent.slice(0, 4).map(e => { return {
+            id: e.id,
+            name: e.name,
+            image: e.image
+        }})
+
         if (Platform.OS == 'ios') {
             try {
-                await SharedGroupPreferences.setItem(
-                    'Data', 
-                    {name: listTalent[0].name, image: listTalent[0].image}, group);
+                await SharedGroupPreferences.setItem('Data', widgetData, group);
             } catch (err) {
                 console.log(err);
             }
         } else if (Platform.OS == 'android') {
-            SharedStorage.set(JSON.stringify(talentList));
+            let jsonString = JSON.stringify(String(widgetData));
+            SharedStorage.set(jsonString);
         }
 
     }

@@ -12,6 +12,17 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		53AFE7F2297452AA00779C34 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53AFE7F1297452AA00779C34 /* AntDesign.ttf */; };
+		53AFE7F3297452AA00779C34 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53AFE7F1297452AA00779C34 /* AntDesign.ttf */; };
+		53AFE7FA297454C700779C34 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AFE7F9297454C700779C34 /* WidgetKit.framework */; };
+		53AFE7FC297454C700779C34 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AFE7FB297454C700779C34 /* SwiftUI.framework */; };
+		53AFE7FF297454C700779C34 /* TalentsWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AFE7FE297454C700779C34 /* TalentsWidgetBundle.swift */; };
+		53AFE801297454C700779C34 /* TalentsWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AFE800297454C700779C34 /* TalentsWidgetLiveActivity.swift */; };
+		53AFE803297454C700779C34 /* TalentsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AFE802297454C700779C34 /* TalentsWidget.swift */; };
+		53AFE806297454C800779C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53AFE805297454C800779C34 /* Assets.xcassets */; };
+		53AFE808297454C800779C34 /* TalentsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 53AFE804297454C700779C34 /* TalentsWidget.intentdefinition */; };
+		53AFE809297454C800779C34 /* TalentsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 53AFE804297454C700779C34 /* TalentsWidget.intentdefinition */; };
+		53AFE80C297454C800779C34 /* TalentsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 53AFE7F8297454C700779C34 /* TalentsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7699B88040F8A987B510C191 /* libPods-synergyapp-synergyappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-synergyapp-synergyappTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -24,7 +35,28 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = synergyapp;
 		};
+		53AFE80A297454C800779C34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53AFE7F7297454C700779C34;
+			remoteInfo = TalentsWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		53AFE810297454C800779C34 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				53AFE80C297454C800779C34 /* TalentsWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* synergyappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = synergyappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +70,18 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = synergyapp/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-synergyapp-synergyappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-synergyapp-synergyappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-synergyapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-synergyapp.debug.xcconfig"; path = "Target Support Files/Pods-synergyapp/Pods-synergyapp.debug.xcconfig"; sourceTree = "<group>"; };
+		53AFE7F1297452AA00779C34 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		53AFE7F8297454C700779C34 /* TalentsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TalentsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		53AFE7F9297454C700779C34 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		53AFE7FB297454C700779C34 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		53AFE7FE297454C700779C34 /* TalentsWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentsWidgetBundle.swift; sourceTree = "<group>"; };
+		53AFE800297454C700779C34 /* TalentsWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentsWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		53AFE802297454C700779C34 /* TalentsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentsWidget.swift; sourceTree = "<group>"; };
+		53AFE804297454C700779C34 /* TalentsWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TalentsWidget.intentdefinition; sourceTree = "<group>"; };
+		53AFE805297454C800779C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		53AFE807297454C800779C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53AFE8172974DDF000779C34 /* synergyapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = synergyapp.entitlements; path = synergyapp/synergyapp.entitlements; sourceTree = "<group>"; };
+		53AFE8182974E0A100779C34 /* TalentsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TalentsWidgetExtension.entitlements; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-synergyapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-synergyapp.release.xcconfig"; path = "Target Support Files/Pods-synergyapp/Pods-synergyapp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-synergyapp-synergyappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-synergyapp-synergyappTests.debug.xcconfig"; path = "Target Support Files/Pods-synergyapp-synergyappTests/Pods-synergyapp-synergyappTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-synergyapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-synergyapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +104,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-synergyapp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53AFE7F5297454C700779C34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53AFE7FC297454C700779C34 /* SwiftUI.framework in Frameworks */,
+				53AFE7FA297454C700779C34 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +139,7 @@
 		13B07FAE1A68108700A75B9A /* synergyapp */ = {
 			isa = PBXGroup;
 			children = (
+				53AFE8172974DDF000779C34 /* synergyapp.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -102,8 +156,23 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-synergyapp.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-synergyapp-synergyappTests.a */,
+				53AFE7F9297454C700779C34 /* WidgetKit.framework */,
+				53AFE7FB297454C700779C34 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		53AFE7FD297454C700779C34 /* TalentsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				53AFE7FE297454C700779C34 /* TalentsWidgetBundle.swift */,
+				53AFE800297454C700779C34 /* TalentsWidgetLiveActivity.swift */,
+				53AFE802297454C700779C34 /* TalentsWidget.swift */,
+				53AFE804297454C700779C34 /* TalentsWidget.intentdefinition */,
+				53AFE805297454C800779C34 /* Assets.xcassets */,
+				53AFE807297454C800779C34 /* Info.plist */,
+			);
+			path = TalentsWidget;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -116,9 +185,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				53AFE8182974E0A100779C34 /* TalentsWidgetExtension.entitlements */,
+				53AFE7F1297452AA00779C34 /* AntDesign.ttf */,
 				13B07FAE1A68108700A75B9A /* synergyapp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* synergyappTests */,
+				53AFE7FD297454C700779C34 /* TalentsWidget */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -133,6 +205,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* synergyapp.app */,
 				00E356EE1AD99517003FC87E /* synergyappTests.xctest */,
+				53AFE7F8297454C700779C34 /* TalentsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,15 +257,34 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				53AFE810297454C800779C34 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				53AFE80B297454C800779C34 /* PBXTargetDependency */,
 			);
 			name = synergyapp;
 			productName = synergyapp;
 			productReference = 13B07F961A680F5B00A75B9A /* synergyapp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		53AFE7F7297454C700779C34 /* TalentsWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53AFE80D297454C800779C34 /* Build configuration list for PBXNativeTarget "TalentsWidgetExtension" */;
+			buildPhases = (
+				53AFE7F4297454C700779C34 /* Sources */,
+				53AFE7F5297454C700779C34 /* Frameworks */,
+				53AFE7F6297454C700779C34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TalentsWidgetExtension;
+			productName = TalentsWidgetExtension;
+			productReference = 53AFE7F8297454C700779C34 /* TalentsWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -200,14 +292,19 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 1420;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1420;
+					};
+					53AFE7F7297454C700779C34 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -226,6 +323,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* synergyapp */,
 				00E356ED1AD99517003FC87E /* synergyappTests */,
+				53AFE7F7297454C700779C34 /* TalentsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53AFE7F3297452AA00779C34 /* AntDesign.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,8 +341,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53AFE7F2297452AA00779C34 /* AntDesign.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53AFE7F6297454C700779C34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53AFE806297454C800779C34 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,7 +521,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				53AFE809297454C800779C34 /* TalentsWidget.intentdefinition in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53AFE7F4297454C700779C34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53AFE801297454C700779C34 /* TalentsWidgetLiveActivity.swift in Sources */,
+				53AFE7FF297454C700779C34 /* TalentsWidgetBundle.swift in Sources */,
+				53AFE808297454C800779C34 /* TalentsWidget.intentdefinition in Sources */,
+				53AFE803297454C700779C34 /* TalentsWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +545,11 @@
 			target = 13B07F861A680F5B00A75B9A /* synergyapp */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
+		53AFE80B297454C800779C34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 53AFE7F7297454C700779C34 /* TalentsWidgetExtension */;
+			targetProxy = 53AFE80A297454C800779C34 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -433,6 +558,7 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-synergyapp-synergyappTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -451,6 +577,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "synergyappTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/synergyapp.app/synergyapp";
 			};
 			name = Debug;
@@ -460,6 +589,7 @@
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-synergyapp-synergyappTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = synergyappTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -475,6 +605,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "synergyappTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/synergyapp.app/synergyapp";
 			};
 			name = Release;
@@ -483,11 +615,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-synergyapp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = synergyapp/synergyapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4PY5U5C2V6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = synergyapp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -500,6 +636,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = synergyapp;
+				SWIFT_OBJC_BRIDGING_HEADER = "synergyapp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -510,10 +647,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-synergyapp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = synergyapp/synergyapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4PY5U5C2V6;
 				INFOPLIST_FILE = synergyapp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -526,8 +667,103 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = synergyapp;
+				SWIFT_OBJC_BRIDGING_HEADER = "synergyapp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		53AFE80E297454C800779C34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = TalentsWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4PY5U5C2V6;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TalentsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TalentsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift5.2/$(PLATFORM_NAME)\"",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.synergyapp.TalentsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		53AFE80F297454C800779C34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = TalentsWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4PY5U5C2V6;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TalentsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TalentsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift5.2/$(PLATFORM_NAME)\"",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.synergyapp.TalentsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -564,7 +800,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -598,6 +834,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -635,7 +872,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -661,6 +898,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -683,6 +921,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		53AFE80D297454C800779C34 /* Build configuration list for PBXNativeTarget "TalentsWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53AFE80E297454C800779C34 /* Debug */,
+				53AFE80F297454C800779C34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
