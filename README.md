@@ -35,4 +35,17 @@ Home Screen            |  Detail Screen         | Widget
  npm run ios 
 ```
 
+### How to run with .ipa file
+Download .ipa file here: https://www.mediafire.com/file/0de56bfqow6x0pe/SynergyApp.ipa/file
+#### Using simulator
+1. Rename .ipa file as .zip and extract the contents
+2. Once the zip file is extracted, we can find the Payload folder which contains App_Name.app file
+3. Drag & drop App_Name.app file to ios simulator
+
+#### Using ios device
+1. Upload the .ipa to any such site which create a shareable installation link using the uploaded .ipa file. Our recomendation is https://www.installonair.com
+2. Open the above link and upload the downloaded .ipa file
+3. Once the files get uploaded click on submit button and wait for the shareable link to get generated
+4. Lastly install the app on the mobile device by opening the shared link through installonair and you are are ready to test once the app gets installed on your device.
+
 
