@@ -12,7 +12,6 @@ export default function useDeepLinkURL() {
       // Get the deep link used to open the app
       const initialUrl = await Linking.getInitialURL();
       setLinkedURL(initialUrl);
-      console.log('INITIAL URL', initialUrl);
     };
 
     getUrlAsync();
@@ -22,7 +21,7 @@ export default function useDeepLinkURL() {
   // You can handle these events with Linking.addEventListener(url, callback)
   useEffect(() => {
     const callback = (url) => {
-      setLinkedURL(url.url), console.log('CALLBACK URL', url.url);
+      setLinkedURL(url.url);
     };
 
     Linking.addEventListener('url', callback);
@@ -30,7 +29,7 @@ export default function useDeepLinkURL() {
   }, []);
 
   const resetURL = () => {
-    setLinkedURL(null), console.log('reseted');
+    setLinkedURL(null);
   };
 
   return {linkedURL, resetURL};

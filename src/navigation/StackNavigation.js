@@ -9,7 +9,6 @@ import {
     isNaviagtionReadyRef,
     navigationRef
 } from '../function';
-import { listTalent } from '../data';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,7 +42,7 @@ const StackNavigation = () => {
                 }
             });
 
-            let choosenTalent = listTalent.find(e => e.id == params?.id)
+            let choosenTalent = talentList.find(e => e.id == params?.id)
 
             RootNavigation(page, choosenTalent);
             resetURL();
