@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
     const [triggerDeepLink, setTriggerDeepLink] = useState(false);
     const { linkedURL, resetURL } = useDeepLink();
-    const { talentList } = useDataContext();
+    const { talentList, updateLastVisitedTalent } = useDataContext();
 
     // HANDLE DEEP LINK
     useEffect(() => {
@@ -43,6 +43,12 @@ const StackNavigation = () => {
             });
 
             let choosenTalent = talentList.find(e => e.id == params?.id)
+
+            updateLastVisitedTalent({
+                id: choosenTalent.id,
+                name: choosenTalent.name,
+                image: choosenTalent.image
+            });
 
             RootNavigation(page, choosenTalent);
             resetURL();

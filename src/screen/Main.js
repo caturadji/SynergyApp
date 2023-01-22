@@ -7,19 +7,13 @@ import {
     StyleSheet,
     Image,
     TextInput,
-    NativeModules,
-    Platform
+
 } from 'react-native';
-import SharedGroupPreferences from 'react-native-shared-group-preferences';
-import { listTalent, userdata } from '../data';
+import { userdata } from '../data';
 import { TalentCard } from '../component';
 import { fontStyles, palette } from "../styles";
 import { useDataContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
-const group = 'group.talents';
-
-const SharedStorage = NativeModules.SharedStorage;
 
 const Main = (props) => {
     const { navigation } = props;
@@ -34,30 +28,6 @@ const Main = (props) => {
         let filtered = _listAllTalent.filter(e => JSON.stringify(e).match(text));
         setFilteredTalent([...filtered]);
     }
-
-    const shareData = async () => {
-        let widgetData = listTalent.slice(0, 4).map(e => { return {
-            id: e.id,
-            name: e.name,
-            image: e.image
-        }})
-
-        if (Platform.OS == 'ios') {
-            try {
-                await SharedGroupPreferences.setItem('Data', widgetData, group);
-            } catch (err) {
-                console.log(err);
-            }
-        } else if (Platform.OS == 'android') {
-            let jsonString = JSON.stringify(String(widgetData));
-            SharedStorage.set(jsonString);
-        }
-
-    }
-
-    useEffect(() => {
-        shareData()
-    },[])
 
     const styles = StyleSheet.create({
         container: { 

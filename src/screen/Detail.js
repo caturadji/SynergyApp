@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { 
     View,
     Text,
@@ -17,7 +17,15 @@ const Detail = (props) => {
     const { navigation, route } = props;
     const params = route.params ? route.params : fallbackData;
     const { height } = useWindowDimensions();
-    const { updateLike } = useDataContext();
+    const { updateLike, updateLastVisitedTalent } = useDataContext();
+
+    useEffect(() => {
+        updateLastVisitedTalent({
+            id: params.id,
+            name: params.name,
+            image: params.image
+        })
+    },[params])
 
     const styles = StyleSheet.create({
         container: { 

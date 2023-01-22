@@ -15,26 +15,46 @@ struct Person : Decodable {
   var image : String
 }
 
-struct TalentEntry : TimelineEntry{
-  var talents : Array<Person>
+struct newData : Decodable {
+  var renderData : [Person]
+  var LastVisited : Person
+}
+
+struct TalentEntry : TimelineEntry {
+  var renderData : [Person]
+  var LastVisited : Person
   var date: Date
 }
 
+struct FallbackData {
+  var type : String
+  var data : newData
+  
+  init(name : String) {
+    type = name
+    data = newData(
+      renderData: [
+        Person(id: 1, name: "\(type) 1", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg"),
+        Person(id: 2, name: "\(type) 2", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg"),
+        Person(id: 3, name: "\(type) 3", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg"),
+        Person(id: 4, name: "\(type) 3", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg"),
+    ], LastVisited: Person(id: 1, name: "\(type) Last Visited", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg")
+    )
+  }
+}
+
 struct TalentProvider : TimelineProvider {
-  var fallBackData : [Person] = [
-    Person(id: 1, name: "Talent 1", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg"),
-    Person(id: 2, name: "Talent 2", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg"),
-    Person(id: 3, name: "Talent 3", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg"),
-    Person(id: 4, name: "Talent 3", image: "https://t3.ftcdn.net/jpg/00/86/56/12/360_F_86561234_8HJdzg2iBlPap18K38mbyetKfdw1oNrm.jpg"),
-  ]
+  var dataPlaceholder : newData = FallbackData(name: "Placeholder").data
+  var dataSnapshot : newData = FallbackData(name: "Snapshoot").data
+  var dataErrorParse: newData = FallbackData(name: "Error").data
+  var dataErrorParse2: newData = FallbackData(name: "Error 2").data
   
   func placeholder(in context: Context) -> TalentEntry {
-    TalentEntry(talents: fallBackData, date: Date())
+    TalentEntry(renderData: dataPlaceholder.renderData, LastVisited: dataPlaceholder.LastVisited, date: Date())
   }
   
   func getSnapshot(in context: Context, completion: @escaping (TalentEntry) -> Void) {
-    let date = Date()
-    let entry = TalentEntry(talents: fallBackData, date: date)
+    let entry = TalentEntry(renderData: dataSnapshot.renderData, LastVisited: dataSnapshot.LastVisited, date: Date())
     completion(entry)
   }
   
@@ -47,27 +67,31 @@ struct TalentProvider : TimelineProvider {
         let decoder = JSONDecoder()
         let data2 = savedData.data(using: .utf8)
         print(data2 as Any)
-        if let parsedData = try? decoder.decode([Person].self, from: data2!) {
-          let entry = TalentEntry(talents: parsedData, date: date)
+        if let parsedData = try? decoder.decode(newData.self, from: data2!) {
+          let entry = TalentEntry(renderData: parsedData.renderData, LastVisited: parsedData.LastVisited, date: date)
           let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 5, to: date)!
           
           let timeline = Timeline(
             entries: [entry],
             policy: .after(nextUpdateDate)
           )
+          
           completion(timeline)
+          WidgetCenter.shared.reloadAllTimelines();
         } else {
-          let entry = TalentEntry(talents: [Person(id: 1, name: "Neme", image: ""), Person(id: 2, name: "Neme2", image: "")], date: date)
+          let entry = TalentEntry(renderData: dataErrorParse.renderData, LastVisited: dataErrorParse.LastVisited, date: Date())
           let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 5, to: date)!
           
           let timeline = Timeline(
             entries: [entry],
             policy: .after(nextUpdateDate)
           )
+          
           completion(timeline)
+          WidgetCenter.shared.reloadAllTimelines();
         }
       } else {
-        let entry = TalentEntry(talents: [Person(id: 1, name: "Tulung", image: "")], date: date)
+        let entry = TalentEntry(renderData: dataErrorParse2.renderData, LastVisited: dataErrorParse2.LastVisited, date: Date())
         let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 5, to: date)!
         
         let timeline = Timeline(
@@ -83,14 +107,13 @@ struct TalentProvider : TimelineProvider {
 struct TalentsWidget: Widget {
   var body: some WidgetConfiguration{
     StaticConfiguration(
-      kind: "Talents" ,
-      provider: TalentProvider()
-    ){ entry in
-      TalentWidgetView(entry: entry)
-    }
+      kind: "Talents",
+      provider: TalentProvider()) { entry in
+        TalentWidgetView(entry: entry)
+      }
     .configurationDisplayName("Talents")
     .description("Available talents to invite")
-    .supportedFamilies([.systemMedium])
+    .supportedFamilies([.systemMedium, .systemSmall])
   }
 }
 
@@ -111,35 +134,74 @@ struct NetworkImage: View {
         Text("No Images")
           .foregroundColor(.gray)
           .font(.system(size: 12))
+          .frame(width: 50, height: 60)
+          .clipShape(Circle())
       }
     }
   }
-
 }
 
-struct TalentWidgetView : View {
+struct headerWidget : View {
+  let headerInfo : String
+  var body: some View {
+    HStack{
+      Text("Talents")
+        .bold()
+        .foregroundColor(.black)
+        .font(.system(size: 22))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.leading, 25)
+      Text(headerInfo)
+        .foregroundColor(.gray)
+        .fontWeight(.light)
+        .font(.system(size: 15))
+        .frame(maxWidth: .infinity, alignment: .trailing)
+        .padding(.trailing, 25)
+    }
+  }
+}
+
+struct mediumWidget : View {
   var entry : TalentProvider.Entry
   var body: some View {
     VStack{
+      headerWidget(headerInfo: "7.234 Available")
       HStack{
-        Text("Talents")
-          .bold()
-          .foregroundColor(.black)
-          .font(.system(size: 22))
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding(.leading, 25)
-        Text("7.234 Available")
-          .foregroundColor(.gray)
-          .fontWeight(.light)
-          .font(.system(size: 15))
-          .frame(maxWidth: .infinity, alignment: .trailing)
-          .padding(.trailing, 25)
-      }
-      HStack{
-        ForEach(0..<entry.talents.count, id: \.self) { (index) in
-          TalentCard(entry: entry.talents[index])
+        ForEach(0..<entry.renderData.count, id: \.self) { (index) in
+          TalentCard(entry: entry.renderData[index])
         }
       }
+    }
+  }
+}
+
+struct smallWidget : View {
+  var entry : TalentProvider.Entry
+  var body : some View {
+    VStack{
+      headerWidget(headerInfo: "Last Visited")
+      NetworkImage(url: URL(string: entry.LastVisited.image))
+      Text(entry.LastVisited.name)
+        .foregroundColor(.black)
+        .font(.system(size: 12))
+        .frame(width: 65, height: 25)
+    }
+    .widgetURL(URL(string: "synergyapp://page=Detail&id=\(entry.LastVisited.id)")!)
+  }
+}
+
+struct TalentWidgetView : View {
+  @Environment(\.widgetFamily) var family: WidgetFamily
+
+  var entry : TalentProvider.Entry;
+  
+  var body: some View {
+    switch family {
+    case .systemSmall:
+      smallWidget(entry: entry)
+    case .systemMedium:
+      mediumWidget(entry: entry)
+    default: mediumWidget(entry: entry)
     }
   }
 }
@@ -163,7 +225,7 @@ struct TalentCard : View {
 
 struct TalentWidgetPreview : PreviewProvider {
   static var previews: some View {
-    TalentWidgetView(entry: TalentEntry(talents: [Person(id: 1, name: "Neme", image: ""), Person(id: 2, name: "Neme2", image: "")], date: Date())).previewContext(WidgetPreviewContext(family: .systemMedium))
+    TalentWidgetView(entry: TalentEntry(renderData: [Person(id: 1, name: "Neme", image: ""), Person(id: 2, name: "Neme2", image: "")], LastVisited: Person(id: 1, name: "Neme", image: ""), date: Date())).previewContext(WidgetPreviewContext(family: .systemMedium))
   }
 }
 
