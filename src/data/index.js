@@ -56,7 +56,7 @@ export const userdata = {
 export const fallbackData = {
     id: 0,
     name: '',
-    image: '',
+    image: 'https://www.charlesrussellspeechlys.com/globalassets/configuration/fallback-images/fallback-image-person.jpg',
     location: '',
     age: 0,
     hobby: [],

@@ -1,29 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { 
     View,
     Text,
     StyleSheet,
     Image,
     TouchableOpacity,
-    useWindowDimensions
 } from "react-native";
 import { TalentInformation } from '../component';
 import { useDataContext } from '../context';
 import { fontStyles, palette } from "../styles";
-import { fallbackData } from '../data';
+import { fallbackData, listTalent } from '../data';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Detail = (props) => {
     const { navigation, route } = props;
     const params = route.params ? route.params : fallbackData;
-    const { height } = useWindowDimensions();
-    const { updateLike, updateLastVisitedTalent } = useDataContext();
+    const { updateLastVisitedTalent } = useDataContext();
+    const [talent, setTalent] = useState(fallbackData);
 
     useEffect(() => {
+        let selectedTalent = listTalent.find(e => e.id == params);
+        setTalent(selectedTalent);
         updateLastVisitedTalent({
-            id: params.id,
-            name: params.name,
-            image: params.image
+            id: selectedTalent?.id,
+            name: selectedTalent?.name,
+            image: selectedTalent?.image
         })
     },[params])
 
@@ -48,14 +49,14 @@ const Detail = (props) => {
             alignItems: 'center'
         },
         talentContainer: { 
-            height: 0.25 * height, 
+            flex: 0.23,
             padding: 15, 
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20, 
             backgroundColor: palette.primary, 
             position: 'absolute',
             width: '100%',
-            bottom: 0
+            bottom: 0,
         },
         buttonText: {
             fontSize: 16
@@ -86,7 +87,7 @@ const Detail = (props) => {
                 {/* Image */}
                 <Image
                     style={styles.image}
-                    source={{ uri: params.image }}
+                    source={{ uri: talent?.image }}
                     resizeMode='cover'
                 />
                 {/* Back Button */}
@@ -102,8 +103,7 @@ const Detail = (props) => {
             <View style={styles.talentContainer}>
                 {/* Talent Information */}
                 <TalentInformation 
-                    onLiked={() => updateLike(params.id)} 
-                    item={params} 
+                    item={talent} 
                     isDetail={true}
                 />
                 {/* Button */}
@@ -122,4 +122,4 @@ const Detail = (props) => {
     )
 }
 
-export default Detail;
+export default React.memo(Detail);

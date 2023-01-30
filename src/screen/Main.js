@@ -7,7 +7,7 @@ import {
     StyleSheet,
     Image,
     TextInput,
-
+    useWindowDimensions
 } from 'react-native';
 import { userdata } from '../data';
 import { TalentCard } from '../component';
@@ -17,16 +17,28 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Main = (props) => {
     const { navigation } = props;
-    const { talentList, updateLike } = useDataContext();
+    const { talentList } = useDataContext();
 
     const [searchText, setSearchText] = useState('');
     const [filteredTalent, setFilteredTalent] = useState([]);
+    const [listTalentID, setListTalentID] = useState([]);
+
+    const { width } = useWindowDimensions();
+
+    // console.log('Re-render Main')
+
+    useEffect(() => {
+        setListTalentID(talentList.map(e => e.id))
+    }, [])
 
     const onChangeSearchText = (text) => {
         setSearchText(text);
+        let lowerCaseText = String(text).toLocaleLowerCase();
         let _listAllTalent = talentList;
-        let filtered = _listAllTalent.filter(e => JSON.stringify(e).match(text));
-        setFilteredTalent([...filtered]);
+        let filtered = _listAllTalent.filter(e => 
+            JSON.stringify(e).toLocaleLowerCase().match(lowerCaseText)
+        );
+        setFilteredTalent(filtered.map(e => e.id));
     }
 
     const styles = StyleSheet.create({
@@ -52,7 +64,7 @@ const Main = (props) => {
         },
         searchbar: {
             borderRadius: 10,
-            padding: 15,
+            padding: width * 3 /100,
             margin: 15,
             backgroundColor: palette.accent2,
             justifyContent: 'space-between',
@@ -92,17 +104,19 @@ const Main = (props) => {
             {/* List Talent */}
             <View style={{ flex: 1 }}>
                 <FlatList
-                    data={searchText == '' ? talentList : filteredTalent}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({item}) => 
-                        <TalentCard
-                            onLiked={(id) => updateLike(id)}
-                            item={item}
-                            onPress={() => navigation.navigate(
-                                'Detail',item
-                            )}
+                    data={searchText == '' ? listTalentID : filteredTalent}
+                    keyExtractor={(item) => item}
+                    renderItem={({item}) => {
+                        // console.log('re-render flatlist', item)
+                        return(
+                            <TalentCard
+                                item={item}
+                                onPress={() => navigation.navigate(
+                                    'Detail',item
+                                )}
                         />
-                    }
+                        )
+                    }}
                 />
             </View>
         </SafeAreaView>

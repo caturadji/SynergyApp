@@ -7,9 +7,11 @@ import {
 import { fontStyles, palette } from '../styles';
 import PropTypes from 'prop-types';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useLikeContext } from '../context';
 
 const TalentInformation = (props) => {
-    const { item, isDetail, onLiked } = props;
+    const { item, isDetail } = props;
+    const { updateLike, likedTalent } = useLikeContext();
 
     const styles = StyleSheet.create({
         infoContainer: {
@@ -56,12 +58,12 @@ const TalentInformation = (props) => {
     return (
         <View>
             <View style={styles.headContainer}>
-                <Text style={styles.headerText}>{item.name}</Text>
+                <Text style={styles.headerText}>{item?.name}</Text>
                 <AntDesign 
-                    name={item.liked ? 'heart' : 'hearto'}
+                    name={likedTalent.includes(item?.id) ? 'heart' : 'hearto'}
                     size={isDetail ? 25 : 20}
-                    color={item.liked ? palette.accent : palette.neutral}
-                    onPress={onLiked}
+                    color={likedTalent.includes(item?.id) ? palette.accent : palette.neutral}
+                    onPress={() => updateLike(item?.id)}
                 />
             </View>
             <View style={styles.starContainer}>
@@ -69,9 +71,9 @@ const TalentInformation = (props) => {
                     return (
                         <AntDesign 
                             key={e}
-                            name={e > item.rating ? 'staro' : 'star'}
+                            name={e > item?.rating ? 'staro' : 'star'}
                             size={isDetail ? 18 : 13}
-                            color={e > item.rating ? palette.neutral : palette.accent}
+                            color={e > item?.rating ? palette.neutral : palette.accent}
                         />
                     )
                 })}
@@ -88,7 +90,7 @@ const TalentInformation = (props) => {
                         numberOfLines={1} 
                         style={styles.bodyText}
                     >
-                        {item.location}
+                        {item?.location}
                     </Text>
                 </View>
                 <View style={styles.verticalDivider}/>
@@ -98,7 +100,7 @@ const TalentInformation = (props) => {
                         numberOfLines={1} 
                         style={styles.bodyText}
                     >
-                        {item.age} years
+                        {item?.age} years
                     </Text>
                 </View>
                 {isDetail && 
@@ -111,7 +113,7 @@ const TalentInformation = (props) => {
                             numberOfLines={1} 
                             style={styles.bodyText}
                         >
-                            {item.gender}
+                            {item?.gender}
                         </Text>
                     </View>
                 }
@@ -123,13 +125,11 @@ const TalentInformation = (props) => {
 TalentInformation.propTypes = {
     item: PropTypes.object.isRequired,
     isDetail: PropTypes.bool,
-    onLiked: PropTypes.func
 }
 
 TalentInformation.defaultProps = {
     item: {},
     isDetail: false,
-    onLiked: () => {}
 }
 
 export default TalentInformation;

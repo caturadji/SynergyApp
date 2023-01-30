@@ -2,7 +2,7 @@ import React, {
     useState,
     createContext,
     useContext,
-    useEffect
+    useEffect,
 }
 from 'react';
 import {
@@ -14,9 +14,7 @@ import SharedGroupPreferences from 'react-native-shared-group-preferences';
 
 const DataContext = createContext({
     talentList: [],
-    setTalentList: () => {},
-    updateLike: () => {},
-    updateLastVisitedTalent: () => {}
+    updateLastVisitedTalent: () => {},
 });
 
 export const useDataContext = () => {
@@ -26,7 +24,7 @@ export const useDataContext = () => {
 const group = 'group.talents';
 const SharedStorage = NativeModules.SharedStorage;
 
-export const ContextProvider = (props) => {
+const DataContextProvider = (props) => {
     const [listData, setlistData] = useState(listTalent);
     const emptyData = {
         id: 0,
@@ -58,13 +56,6 @@ export const ContextProvider = (props) => {
         }
     }
 
-    const updateLikeByID = (id) => {
-        let _listData = listData;
-        let index = _listData.findIndex(e => e.id == id);
-        _listData[index].liked = !_listData[index].liked;
-        setlistData([..._listData]);
-    }
-
     const onUpdateLastVisitedTalent = (item) => {
         shareData(listTalent, item);
     }
@@ -73,17 +64,62 @@ export const ContextProvider = (props) => {
         shareData(listTalent, emptyData);
     }, [])
 
+    const value = {
+        talentList: listData, 
+        updateLastVisitedTalent: (item) => onUpdateLastVisitedTalent(item)
+    }
+
 
     return (
-        <DataContext.Provider value={{ 
-            talentList: listData, 
-            setTalentList: (data) => setlistData(data),
-            updateLike: (id) => updateLikeByID(id),
-            updateLastVisitedTalent: (item) => onUpdateLastVisitedTalent(item)
-        }}>
+        <DataContext.Provider value={value}>
             {props.children}
         </DataContext.Provider>
 
     )
 }
 
+const LikeContext = createContext({
+    updateLike: () => {},
+    likedTalent: []
+});
+
+export const useLikeContext = () => {
+    return useContext(LikeContext);
+}
+
+const LikeContextProvider = (props) => {
+    const [likedTalent, setLikedTalent] = useState([]);
+
+    const updateLikeByID = (id) => {
+        let _listLiked = likedTalent;
+        if(_listLiked.includes(id)) {
+            let index = _listLiked.findIndex(e => e.id == id);
+            _listLiked.splice(index);
+        } else {
+            _listLiked.push(id)
+        }
+        setLikedTalent([..._listLiked]);
+    }
+
+    const value = {
+        updateLike: (id) => updateLikeByID(id),
+        likedTalent: likedTalent
+    }
+
+    return (
+        <LikeContext.Provider value={value}>
+            {props.children}
+        </LikeContext.Provider>
+
+    )
+}
+
+export const ContextProvider = (props) => {
+    return (
+        <DataContextProvider>
+            <LikeContextProvider>
+                {props.children}
+            </LikeContextProvider>
+        </DataContextProvider>
+    )
+}

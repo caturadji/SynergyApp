@@ -113,7 +113,7 @@ struct TalentsWidget: Widget {
       }
     .configurationDisplayName("Talents")
     .description("Available talents to invite")
-    .supportedFamilies([.systemMedium, .systemSmall])
+    .supportedFamilies([.systemMedium, .systemSmall, .accessoryCircular])
   }
 }
 
@@ -186,7 +186,23 @@ struct smallWidget : View {
         .font(.system(size: 12))
         .frame(width: 65, height: 25)
     }
-    .widgetURL(URL(string: "synergyapp://page=Detail&id=\(entry.LastVisited.id)")!)
+    .widgetURL(
+      entry.LastVisited.id != 0
+        ? URL(string: "synergyapp://page=Detail&id=\(entry.LastVisited.id)")
+        : URL(string: "")
+    )
+  }
+}
+
+struct circleLockWidget : View {
+  var entry : TalentProvider.Entry
+  var body: some View {
+    NetworkImage(url: URL(string: entry.LastVisited.image))
+      .widgetURL(
+        entry.LastVisited.id != 0
+          ? URL(string: "synergyapp://page=Detail&id=\(entry.LastVisited.id)")
+          : URL(string: "")
+      )
   }
 }
 
@@ -201,6 +217,8 @@ struct TalentWidgetView : View {
       smallWidget(entry: entry)
     case .systemMedium:
       mediumWidget(entry: entry)
+    case .accessoryCircular:
+      circleLockWidget(entry: entry)
     default: mediumWidget(entry: entry)
     }
   }

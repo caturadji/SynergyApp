@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     TouchableOpacity,
     StyleSheet,
@@ -8,9 +8,17 @@ import {
 import PropTypes from 'prop-types';
 import { TalentHobby, TalentInformation } from '../component';
 import { palette } from '../styles';
+import { listTalent, fallbackData } from '../data';
 
 const TalentCard = (props) => {
-    const { item, onPress, onLiked } = props;
+    const { item, onPress } = props;
+    const [talent, setTalent] = useState(fallbackData);
+
+    // console.log('re-rendered item ', item);
+
+    useEffect(() => {
+        setTalent(listTalent.find(e => e.id == item))
+    }, [item])
 
     const styles = StyleSheet.create({
         cardContainer: { 
@@ -54,14 +62,14 @@ const TalentCard = (props) => {
                 <View style={styles.photoContainer}>
                     <Image
                         style={styles.photo}
-                        source={{ uri: item.image }}
+                        source={{ uri: talent?.image }}
                         resizeMode='cover'
                     />
                 </View>
                 {/* Talent Information Container*/}
                 <View style={styles.informationContainer}>
-                    <TalentInformation onLiked={() => onLiked(item.id)} item={item}/>
-                    <TalentHobby item={item.hobby}/>
+                    <TalentInformation item={talent}/>
+                    <TalentHobby item={talent?.hobby}/>
                 </View>
             </View>
         </TouchableOpacity>
@@ -69,9 +77,8 @@ const TalentCard = (props) => {
 }
 
 TalentCard.propTypes = {
-    item: PropTypes.object.isRequired,
+    item: PropTypes.number.isRequired,
     onPress: PropTypes.func.isRequired,
-    onLiked: PropTypes.func.isRequired
 }
 
 export default TalentCard;

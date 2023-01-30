@@ -27,7 +27,7 @@ const TalentHobby = (props) => {
     })
     return (
         <View style={styles.container}>
-            {item.map((e, index) => {
+            {item?.map((e, index) => {
                 if (index < 4) {
                     return(
                         <View 
@@ -44,7 +44,7 @@ const TalentHobby = (props) => {
                     <Text 
                         style={fontStyles.mainDesc}
                     >
-                        +{item.length - 4}
+                        +{item?.length - 4}
                     </Text>
                 </View>
             }
