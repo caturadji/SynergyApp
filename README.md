@@ -4,18 +4,18 @@ App created from the UI Design by Maya Koeva (https://dribbble.com/shots/1003592
  
 Home Screen            |  Detail Screen         | Widget
 :-------------------------:|:-------------------------:|:-------------------------:
- <img src="https://user-images.githubusercontent.com/63891497/212728233-0e8bc5f9-f42a-40ad-a17c-a5e3ac4a847a.png" width="200" />  |  <img src="https://user-images.githubusercontent.com/63891497/212728141-37ad2f3a-859e-4706-ac56-bc6da99847e3.png" width="200" /> |  <img src="https://user-images.githubusercontent.com/63891497/212728303-451df7e8-95ec-4646-ad00-c972d869064f.png" width="200" />
+ <img src="https://user-images.githubusercontent.com/63891497/212728233-0e8bc5f9-f42a-40ad-a17c-a5e3ac4a847a.png" width="200" />  |  <img src="https://user-images.githubusercontent.com/63891497/212728141-37ad2f3a-859e-4706-ac56-bc6da99847e3.png" width="200" /> |  <img src="https://user-images.githubusercontent.com/63891497/215619224-8fc85adc-b952-4916-8d22-79d6888f1d3f.png" width="200" />
 
-### Project techstack
+### Project techstack!
 + Framework : **React Native**
 + Programming language : **Javascript**
 + Toolkit : **XCode**
-+ OS Target : **Ios** (for android not developed yet)
++ OS Target : **iOS** (for android not developed yet)
 
 
 ### Requirements
-+ Nodejs 19.4.0
-+ Ruby 2.7.6
++ **Nodejs** 19.4.0
++ **Ruby** 2.7.6
 
 
 ### How to build
