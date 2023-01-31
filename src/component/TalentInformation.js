@@ -7,11 +7,10 @@ import {
 import { fontStyles, palette } from '../styles';
 import PropTypes from 'prop-types';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useLikeContext } from '../context';
+import { HeartShape } from '../component';
 
 const TalentInformation = (props) => {
     const { item, isDetail } = props;
-    const { updateLike, likedTalent } = useLikeContext();
 
     const styles = StyleSheet.create({
         infoContainer: {
@@ -59,12 +58,7 @@ const TalentInformation = (props) => {
         <View>
             <View style={styles.headContainer}>
                 <Text style={styles.headerText}>{item?.name}</Text>
-                <AntDesign 
-                    name={likedTalent.includes(item?.id) ? 'heart' : 'hearto'}
-                    size={isDetail ? 25 : 20}
-                    color={likedTalent.includes(item?.id) ? palette.accent : palette.neutral}
-                    onPress={() => updateLike(item?.id)}
-                />
+                <HeartShape id={item?.id} isDetail={isDetail}/>
             </View>
             <View style={styles.starContainer}>
                 {([1, 2, 3 ,4, 5]).map(e => {
