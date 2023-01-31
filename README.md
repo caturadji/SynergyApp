@@ -4,22 +4,22 @@ App created from the UI Design by Maya Koeva (https://dribbble.com/shots/1003592
  
 Home Screen            |  Detail Screen         | Widget
 :-------------------------:|:-------------------------:|:-------------------------:
- <img src="https://user-images.githubusercontent.com/63891497/212728233-0e8bc5f9-f42a-40ad-a17c-a5e3ac4a847a.png" width="200" />  |  <img src="https://user-images.githubusercontent.com/63891497/212728141-37ad2f3a-859e-4706-ac56-bc6da99847e3.png" width="200" /> |  <img src="https://user-images.githubusercontent.com/63891497/212728303-451df7e8-95ec-4646-ad00-c972d869064f.png" width="200" />
+ <img src="https://user-images.githubusercontent.com/63891497/212728233-0e8bc5f9-f42a-40ad-a17c-a5e3ac4a847a.png" width="200" />  |  <img src="https://user-images.githubusercontent.com/63891497/212728141-37ad2f3a-859e-4706-ac56-bc6da99847e3.png" width="200" /> |  <img src="https://user-images.githubusercontent.com/63891497/215619224-8fc85adc-b952-4916-8d22-79d6888f1d3f.png" width="200" />
 
-### Project techstack
+### Project techstack!
 + Framework : **React Native**
 + Programming language : **Javascript**
 + Toolkit : **XCode**
-+ OS Target : **Ios** (for android not developed yet)
++ OS Target : **iOS** (for android not developed yet)
 
 
 ### Requirements
-+ Nodejs 19.4.0
-+ Ruby 2.7.6
++ **Nodejs** 19.4.0
++ **Ruby** 2.7.6
 
 
 ### How to build
-1. Setup React Native environment in your machine (https://reactnative.dev/docs/environment-setup) 
+1. Setup React Native environment in your machine : [React Native Environment Setup Documentation](https://reactnative.dev/docs/environment-setup) 
 2. Clone this repository to your local directory
 3. Open terminal with your clone repository as a root
 4. Install depedencies 
@@ -36,7 +36,7 @@ Home Screen            |  Detail Screen         | Widget
 ```
 
 ### How to run with .ipa file
-Download .ipa file here: https://www.mediafire.com/file/0de56bfqow6x0pe/SynergyApp.ipa/file
+Download .ipa file here: [Download Link](https://www.mediafire.com/file/vbbnlx2hchqcxoi/SynergyApp0.1.ipa/file)
 #### Using simulator
 1. Rename .ipa file as .zip and extract the contents
 2. Once the zip file is extracted, we can find the Payload folder which contains App_Name.app file
