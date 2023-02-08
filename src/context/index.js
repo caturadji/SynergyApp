@@ -51,7 +51,7 @@ const DataContextProvider = (props) => {
                 console.log(err);
             }
         } else if (Platform.OS == 'android') {
-            let jsonString = JSON.stringify(String(widgetData));
+            let jsonString = JSON.stringify(data);
             SharedStorage.set(jsonString);
         }
     }
