@@ -6,5 +6,5 @@
     <string name="talent_3">Talent 3</string>
     <string name="talent_4">Talent 4</string>
     <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">This is an app widget description</string>
+    <string name="app_widget_description">Available Talents</string>
 </resources>

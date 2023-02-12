@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.content.SharedPreferences;
 
@@ -24,6 +23,11 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation;
  * Implementation of App Widget functionality.
  */
 public class TalentsWidget extends AppWidgetProvider {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -70,8 +74,8 @@ public class TalentsWidget extends AppWidgetProvider {
 
     static PendingIntent getPendingSelfIntent(Context context, int id) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("synergyapp://page=detail&id=1"));
-        return PendingIntent.getActivity(context, 0, intent, 0);
+        intent.setData(Uri.parse("synergyapp://page=Detail&id="+id));
+        return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
     }
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -86,20 +90,38 @@ public class TalentsWidget extends AppWidgetProvider {
 
             // Construct the RemoteViews object
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.talents_widget);
-            views.setTextViewText(R.id.talentName1, renderData.getJSONObject(0).getString("name"));
-            views.setTextViewText(R.id.talentName2, renderData.getJSONObject(1).getString("name"));
-            views.setTextViewText(R.id.talentName3, renderData.getJSONObject(2).getString("name"));
-            views.setTextViewText(R.id.talentName4, renderData.getJSONObject(3).getString("name"));
 
-            loadImage(views, renderData.getJSONObject(0).getString("image"), R.id.imageTalent1);
-            loadImage(views, renderData.getJSONObject(1).getString("image"), R.id.imageTalent2);
-            loadImage(views, renderData.getJSONObject(2).getString("image"), R.id.imageTalent3);
-            loadImage(views, renderData.getJSONObject(3).getString("image"), R.id.imageTalent4);
+            for (int i = 0; i < renderData.length(); i++) {
+                int textID;
+                int imageID;
 
+                if (i == 0) {
+                    textID = R.id.talentName1;
+                    imageID = R.id.imageTalent1;
+                } else if (i == 1) {
+                    textID = R.id.talentName2;
+                    imageID = R.id.imageTalent2;
+                } else if (i == 2) {
+                    textID = R.id.talentName3;
+                    imageID = R.id.imageTalent3;
+                } else {
+                    textID = R.id.talentName4;
+                    imageID = R.id.imageTalent4;
+                }
+
+                String textValue = renderData.getJSONObject(i).getString("name");
+                views.setTextViewText(textID, textValue);
+
+                String imageValue = renderData.getJSONObject(i).getString("image");
+                loadImage(views, imageValue, imageID);
+
+                int id = Integer.parseInt(renderData.getJSONObject(i).getString("id"));
+                views.setOnClickPendingIntent(imageID, getPendingSelfIntent(context, id));
+            }
 
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
-        } catch (Exception err) {
+        } catch (JSONException err) {
             err.printStackTrace();
         }
     }
