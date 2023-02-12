@@ -2,15 +2,17 @@
 ### About the app
 App created from the UI Design by Maya Koeva (https://dribbble.com/shots/10035926-Talents-Casting-App). Movie directors can use this app to find talented actresses or actors for casting. This is the final set of mobile app screenshots for this project. 
  
-Home Screen            |  Detail Screen         | Widget
-:-------------------------:|:-------------------------:|:-------------------------:
- <img src="https://user-images.githubusercontent.com/63891497/212728233-0e8bc5f9-f42a-40ad-a17c-a5e3ac4a847a.png" width="200" />  |  <img src="https://user-images.githubusercontent.com/63891497/212728141-37ad2f3a-859e-4706-ac56-bc6da99847e3.png" width="200" /> |  <img src="https://user-images.githubusercontent.com/63891497/215619224-8fc85adc-b952-4916-8d22-79d6888f1d3f.png" width="200" />
+Home Screen            |  Detail Screen         | Widget (ios) | Widget (android)
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+ <img src="https://user-images.githubusercontent.com/63891497/212728233-0e8bc5f9-f42a-40ad-a17c-a5e3ac4a847a.png" width="200" />  |  <img src="https://user-images.githubusercontent.com/63891497/212728141-37ad2f3a-859e-4706-ac56-bc6da99847e3.png" width="200" /> |  <img src="https://user-images.githubusercontent.com/63891497/215619224-8fc85adc-b952-4916-8d22-79d6888f1d3f.png" width="200" /> | <img src="https://user-images.githubusercontent.com/63891497/218312363-c8ccb7bd-cc41-4c02-a41b-526a8ed29e02.png" width="200" /> 
+ 
+
 
 ### Project techstack!
 + Framework : **React Native**
 + Programming language : **Javascript**
 + Toolkit : **XCode**
-+ OS Target : **iOS** (for android not developed yet)
++ OS Target : **iOS** and **Android**
 
 
 ### Requirements
@@ -26,11 +28,15 @@ Home Screen            |  Detail Screen         | Widget
 ```
  npm install
 ```
-5. Install framework added for ios development 
+5. a. Build on your android emulator 
+```
+ npm run android
+```
+5. B. 1. Install framework added for ios development 
 ``` 
  cd ios && pod install && cd .. 
 ```
-6. Build on your simulator 
+5. B. 2. Build on your ios simulator 
 ``` 
  npm run ios 
 ```
