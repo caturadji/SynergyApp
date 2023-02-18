@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "303276995486",
+    "firebase_url": "https://nanoskies-f5d01.firebaseio.com",
+    "project_id": "nanoskies-f5d01",
+    "storage_bucket": "nanoskies-f5d01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303276995486:android:ef8022d254d2e3f1775c8f",
+        "android_client_info": {
+          "package_name": "com.synergyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303276995486-272pn3mvt020j5657qlvvadkt9he1f6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.synergyapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "303276995486-tt5bc436qcn2jornn5nrna53flefntds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9Yzp2YS1S2RseDBW6SOJ_UMXTSrcUO6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303276995486-tt5bc436qcn2jornn5nrna53flefntds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

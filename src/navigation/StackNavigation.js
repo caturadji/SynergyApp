@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Main, Detail } from '../screen';
-import { useDataContext } from '../context';
 import { 
     useDeepLink,
     RootNavigation,
     isNaviagtionReadyRef,
     navigationRef
 } from '../function';
+import { registerNotification } from '../function';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +45,10 @@ const StackNavigation = () => {
             resetURL();
         } 
     }, [resetURL, triggerDeepLink]);
+
+    useEffect(() => {
+        registerNotification()
+    }, [])
 
 
     return (

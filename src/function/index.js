@@ -4,3 +4,4 @@ export {
     navigationRef, 
     RootNavigation
 } from './RootNavigation';
+export { registerNotification, registerRemoteNotification } from './Notifications';

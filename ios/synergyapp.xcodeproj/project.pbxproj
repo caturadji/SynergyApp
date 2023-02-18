@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		538DBF2529A11A940043D0E6 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 538DBF2429A11A940043D0E6 /* FirebaseMessaging */; };
 		53AFE7F2297452AA00779C34 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53AFE7F1297452AA00779C34 /* AntDesign.ttf */; };
 		53AFE7F3297452AA00779C34 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53AFE7F1297452AA00779C34 /* AntDesign.ttf */; };
 		53AFE7FA297454C700779C34 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53AFE7F9297454C700779C34 /* WidgetKit.framework */; };
@@ -22,6 +23,7 @@
 		53AFE808297454C800779C34 /* TalentsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 53AFE804297454C700779C34 /* TalentsWidget.intentdefinition */; };
 		53AFE809297454C800779C34 /* TalentsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 53AFE804297454C700779C34 /* TalentsWidget.intentdefinition */; };
 		53AFE80C297454C800779C34 /* TalentsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 53AFE7F8297454C700779C34 /* TalentsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		53C4743429A1210200F2B950 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53C4743329A1210200F2B950 /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CEAD001CEF469DA2414E2CC7 /* libPods-synergyapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B923B6A04B0AD2911B49E6F7 /* libPods-synergyapp.a */; };
 		E28CE6F47AA39C0C9D1D9368 /* libPods-synergyapp-synergyappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B93CB18E4F9642FC3CB4C13E /* libPods-synergyapp-synergyappTests.a */; };
@@ -84,6 +86,7 @@
 		53AFE807297454C800779C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53AFE8172974DDF000779C34 /* synergyapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = synergyapp.entitlements; path = synergyapp/synergyapp.entitlements; sourceTree = "<group>"; };
 		53AFE8182974E0A100779C34 /* TalentsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TalentsWidgetExtension.entitlements; sourceTree = "<group>"; };
+		53C4743329A1210200F2B950 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = synergyapp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B923B6A04B0AD2911B49E6F7 /* libPods-synergyapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-synergyapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93CB18E4F9642FC3CB4C13E /* libPods-synergyapp-synergyappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-synergyapp-synergyappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				538DBF2529A11A940043D0E6 /* FirebaseMessaging in Frameworks */,
 				CEAD001CEF469DA2414E2CC7 /* libPods-synergyapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +143,7 @@
 		13B07FAE1A68108700A75B9A /* synergyapp */ = {
 			isa = PBXGroup;
 			children = (
+				53C4743329A1210200F2B950 /* GoogleService-Info.plist */,
 				53AFE8172974DDF000779C34 /* synergyapp.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -265,6 +270,9 @@
 				53AFE80B297454C800779C34 /* PBXTargetDependency */,
 			);
 			name = synergyapp;
+			packageProductDependencies = (
+				538DBF2429A11A940043D0E6 /* FirebaseMessaging */,
+			);
 			productName = synergyapp;
 			productReference = 13B07F961A680F5B00A75B9A /* synergyapp.app */;
 			productType = "com.apple.product-type.application";
@@ -317,6 +325,9 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+				538DBF2329A11A940043D0E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -342,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53AFE7F2297452AA00779C34 /* AntDesign.ttf in Resources */,
+				53C4743429A1210200F2B950 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -619,8 +631,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = synergyapp/synergyapp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4PY5U5C2V6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = synergyapp/Info.plist;
@@ -682,6 +696,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = synergyapp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "synergyapp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -697,8 +712,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = synergyapp/synergyapp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4PY5U5C2V6;
+				DEVELOPMENT_TEAM = "";
 				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = synergyapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -714,6 +731,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = synergyapp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "synergyapp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -991,6 +1009,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		538DBF2329A11A940043D0E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		538DBF2429A11A940043D0E6 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 538DBF2329A11A940043D0E6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
