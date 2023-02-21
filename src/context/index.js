@@ -10,11 +10,14 @@ import {
     Platform
 } from 'react-native';
 import { listTalent } from '../data';
+import { sortDinstanceList } from '../function';
 import SharedGroupPreferences from 'react-native-shared-group-preferences';
 
 const DataContext = createContext({
     talentList: [],
     updateLastVisitedTalent: () => {},
+    sort: () => {},
+    search: () => {}
 });
 
 export const useDataContext = () => {
@@ -25,7 +28,10 @@ const group = 'group.talents';
 const SharedStorage = NativeModules.SharedStorage;
 
 const DataContextProvider = (props) => {
-    const [listData, setlistData] = useState(listTalent);
+    const [listData, setlistData] = useState([]);
+    const [sortBy, setSortBy] = useState('name');
+    const [searchText, setSearchText] = useState('');
+    const [sortType, setSortType] = useState('Ascending');
     const emptyData = {
         id: 0,
         name: 'Not available',
@@ -60,21 +66,70 @@ const DataContextProvider = (props) => {
         shareData(listTalent, item);
     }
 
+    const sortData = async (by, type) => {
+        setSortBy(by);
+        setSortType(type);
+        let searchedData = searchFunction(listTalent, searchText)
+        let data = [];
+        if (by == 'nearest') {
+            sortDinstanceList(searchedData, type).then((dataNearest) => {
+                setlistData(dataNearest.map(e => e.id));
+            });
+        } else {
+            data = sortFunction(searchedData, by, type);
+            setlistData(data.map(e => e.id));
+        }
+    }
+
+    const sortFunction = (data, by, type) => {
+        let _listAllTalent = data;
+        if (type == 'Ascending') {
+            return _listAllTalent.sort((a,b) => (a[by] > b[by]) ? 1 : ((b[by] > a[by]) ? -1 : 0));
+        } else if (type == 'Descending') {
+            return _listAllTalent.sort((a,b) => (a[by] < b[by]) ? 1 : ((b[by] < a[by]) ? -1 : 0));
+        }
+        
+    }
+
+    const searchData = async (text) => {
+        setSearchText(text);
+        let _listAllTalent = [];
+        if(sortBy == 'nearest') {
+            await sortDinstanceList(listTalent, sortType).then((dataNearest) => {
+                dataNearest.map(e => {
+                    _listAllTalent.push(listTalent.find(item => item.id == e.id))
+                })
+            });
+        } else {
+            _listAllTalent = sortFunction(listTalent, sortBy, sortType);
+        }
+        let filtered = searchFunction(_listAllTalent, text)
+        setlistData(filtered.map(e => e.id));
+    }
+
+    const searchFunction = (data, text) => {
+        let lowerCaseText = String(text).toLocaleLowerCase();
+        return data.filter(e => 
+            JSON.stringify(e).toLocaleLowerCase().match(lowerCaseText)
+        );
+    }
+
     useEffect(() => {
         shareData(listTalent, emptyData);
+        sortData('name', sortType);
     }, [])
 
     const value = {
         talentList: listData, 
-        updateLastVisitedTalent: (item) => onUpdateLastVisitedTalent(item)
+        updateLastVisitedTalent: (item) => onUpdateLastVisitedTalent(item),
+        sort: (by, type) => sortData(by, type),
+        search: (text) => searchData(text)
     }
-
 
     return (
         <DataContext.Provider value={value}>
             {props.children}
         </DataContext.Provider>
-
     )
 }
 

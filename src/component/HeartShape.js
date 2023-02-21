@@ -9,7 +9,7 @@ const HeartShape = (props) => {
     const { likedTalent, updateLike } = useLikeContext();
 
     return (
-        <AntDesign 
+        <AntDesign
             name={likedTalent.includes(id) ? 'heart' : 'hearto'}
             size={isDetail ? 25 : 20}
             color={likedTalent.includes(id) ? palette.accent : palette.neutral}

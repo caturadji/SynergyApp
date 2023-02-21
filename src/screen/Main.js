@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import {
     View,
     Text,
@@ -7,38 +7,47 @@ import {
     StyleSheet,
     Image,
     TextInput,
-    useWindowDimensions
+    useWindowDimensions,
 } from 'react-native';
 import { userdata } from '../data';
-import { TalentCard } from '../component';
+import { TalentCard, SearchSetting } from '../component';
 import { fontStyles, palette } from "../styles";
 import { useDataContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Main = (props) => {
     const { navigation } = props;
-    const { talentList } = useDataContext();
+    const { talentList, sort, search } = useDataContext();
+    const { width } = useWindowDimensions();
+    const bottomSheetModalRef = useRef(null);
+    const handlePresentModalPress = useCallback(() => {
+        bottomSheetModalRef.current?.present();
+    }, []);
 
     const [searchText, setSearchText] = useState('');
-    const [filteredTalent, setFilteredTalent] = useState([]);
-    const [listTalentID, setListTalentID] = useState([]);
-
-    const { width } = useWindowDimensions();
-
-    // console.log('Re-render Main')
 
     useEffect(() => {
-        setListTalentID(talentList.map(e => e.id))
+        //requestLocationPermission();
+        //return () =>  Geolocation.clearWatch(watchID);
     }, [])
+
+    const handleSearchSetting = (value) => {
+        if (value.sortBy == 'Nearest') {
+            sort('nearest', value.sortType)
+        } else if (value.sortBy == 'Name') {
+            sort('name', value.sortType);
+        } else if (value.sortBy == 'Age') {
+            sort('age', value.sortType)
+        } else if (value.sortBy == 'Rate') {
+            sort('rating', value.sortType)
+        }
+        bottomSheetModalRef.current?.close();
+    }
 
     const onChangeSearchText = (text) => {
         setSearchText(text);
-        let lowerCaseText = String(text).toLocaleLowerCase();
-        let _listAllTalent = talentList;
-        let filtered = _listAllTalent.filter(e => 
-            JSON.stringify(e).toLocaleLowerCase().match(lowerCaseText)
-        );
-        setFilteredTalent(filtered.map(e => e.id));
+        search(text);
     }
 
     const styles = StyleSheet.create({
@@ -65,11 +74,17 @@ const Main = (props) => {
         searchbar: {
             borderRadius: 10,
             padding: width * 3 /100,
-            margin: 15,
             backgroundColor: palette.accent2,
             justifyContent: 'space-between',
             flexDirection: 'row',
-            alignItems: 'center'
+            alignItems: 'center',
+            width: '85%'
+        },
+        searchContainer: { 
+          flexDirection: 'row', 
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          margin: 15
         }
     })
 
@@ -88,23 +103,41 @@ const Main = (props) => {
                 />
             </View>
             {/* Searchbar */}
-            <View style={styles.searchbar}> 
-                <TextInput
-                    placeholder='Search talents ...'
-                    style={fontStyles.detailDesc}
-                    onChangeText={(text) => onChangeSearchText(text)}
-                    value={searchText}
-                />
+            <View style={styles.searchContainer}>
+              <View style={styles.searchbar}> 
+                <View style={{ flexDirection: 'row' }}>
+                  <AntDesign
+                      name='search1'
+                      size={20}
+                      color={palette.neutral}
+                      style={{ marginRight: 8 }}
+                  />
+                  <TextInput
+                      placeholder='Search talents ...'
+                      style={fontStyles.detailDesc}
+                      onChangeText={(text) => onChangeSearchText(text)}
+                      value={searchText}
+                  />
+                </View>
                 <AntDesign
-                    name='search1'
+                    name='scan1'
                     size={20}
                     color={palette.neutral}
                 />
+              </View>
+              <View style={{ width: '17%', alignItems: 'center'}}>
+                <Ionicons
+                    name='filter'
+                    size={25}
+                    color={palette.neutral}
+                    onPress={handlePresentModalPress}
+                />
+              </View>
             </View>
             {/* List Talent */}
             <View style={{ flex: 1 }}>
                 <FlatList
-                    data={searchText == '' ? listTalentID : filteredTalent}
+                    data={talentList}
                     keyExtractor={(item) => item}
                     renderItem={({item}) => {
                         // console.log('re-render flatlist', item)
@@ -114,11 +147,16 @@ const Main = (props) => {
                                 onPress={() => navigation.navigate(
                                     'Detail',item
                                 )}
-                        />
+                            />
                         )
                     }}
                 />
             </View>
+            {/* Search Setting */}
+            <SearchSetting 
+                ref={bottomSheetModalRef}
+                onApply={(val) => handleSearchSetting(val)}
+            />
         </SafeAreaView>
     )
 }

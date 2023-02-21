@@ -4,7 +4,7 @@ export const registerRemoteNotification = () => {
     Notifications.registerRemoteNotifications();
     Notifications.events().registerRemoteNotificationsRegistered((event) => {
         // TODO: Send the token to my server so it could send back push notifications...
-        console.log("Device Token Received", event.deviceToken);
+        // console.log("Device Token Received", event.deviceToken);
     });
     Notifications.events().registerRemoteNotificationsRegistrationFailed((event) => {
         console.error('Fail Register', event);
@@ -14,7 +14,7 @@ export const registerRemoteNotification = () => {
 export const registerNotification = () => {
     Notifications.registerRemoteNotifications();
     Notifications.events().registerNotificationReceivedForeground((notification, completion) => {
-      console.log("Notification Received - Foreground", notification.payload);
+      // console.log("Notification Received - Foreground", notification.payload);
 
       // Calling completion on iOS with `alert: true` will present the native iOS inApp notification.
       completion({alert: true, sound: true, badge: false});
@@ -27,7 +27,7 @@ export const registerNotification = () => {
     });
         
     Notifications.events().registerNotificationReceivedBackground((notification, completion) => {
-      console.log("Notification Received - Background", notification.payload);
+      // console.log("Notification Received - Background", notification.payload);
 
       // Calling completion on iOS with `alert: true` will present the native iOS inApp notification.
       completion({alert: true, sound: true, badge: false});

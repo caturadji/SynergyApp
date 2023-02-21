@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		537A22B829A2F9B3006F8899 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 537A22B729A2F9B3006F8899 /* Ionicons.ttf */; };
 		538DBF2529A11A940043D0E6 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 538DBF2429A11A940043D0E6 /* FirebaseMessaging */; };
 		53AFE7F2297452AA00779C34 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53AFE7F1297452AA00779C34 /* AntDesign.ttf */; };
 		53AFE7F3297452AA00779C34 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53AFE7F1297452AA00779C34 /* AntDesign.ttf */; };
@@ -74,6 +75,7 @@
 		16888DBB5D53816DEBA8EFF7 /* Pods-synergyapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-synergyapp.debug.xcconfig"; path = "Target Support Files/Pods-synergyapp/Pods-synergyapp.debug.xcconfig"; sourceTree = "<group>"; };
 		1D5FB896C63693942143AEA7 /* Pods-synergyapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-synergyapp.release.xcconfig"; path = "Target Support Files/Pods-synergyapp/Pods-synergyapp.release.xcconfig"; sourceTree = "<group>"; };
 		4AC9B8513DD531F307C307C3 /* Pods-synergyapp-synergyappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-synergyapp-synergyappTests.debug.xcconfig"; path = "Target Support Files/Pods-synergyapp-synergyappTests/Pods-synergyapp-synergyappTests.debug.xcconfig"; sourceTree = "<group>"; };
+		537A22B729A2F9B3006F8899 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		53AFE7F1297452AA00779C34 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		53AFE7F8297454C700779C34 /* TalentsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TalentsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		53AFE7F9297454C700779C34 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -190,6 +192,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				537A22B729A2F9B3006F8899 /* Ionicons.ttf */,
 				53AFE8182974E0A100779C34 /* TalentsWidgetExtension.entitlements */,
 				53AFE7F1297452AA00779C34 /* AntDesign.ttf */,
 				13B07FAE1A68108700A75B9A /* synergyapp */,
@@ -352,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				537A22B829A2F9B3006F8899 /* Ionicons.ttf in Resources */,
 				53AFE7F2297452AA00779C34 /* AntDesign.ttf in Resources */,
 				53C4743429A1210200F2B950 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,

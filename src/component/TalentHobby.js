@@ -39,7 +39,7 @@ const TalentHobby = (props) => {
                     )
                 }
             })}
-            {item.length > 4 && 
+            {item?.length > 4 && 
                 <View style={styles.chips}>
                     <Text 
                         style={fontStyles.mainDesc}
