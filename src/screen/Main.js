@@ -11,15 +11,13 @@ import {
     Platform,
     PermissionsAndroid,
     Alert,
-    Linking
 } from 'react-native';
 import { userdata } from '../data';
-import { TalentCard, SearchSetting } from '../component';
+import { TalentCard, SearchSetting, Scanner } from '../component';
 import { fontStyles, palette } from "../styles";
 import { useDataContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Camera } from 'react-native-camera-kit';
 
 const Main = (props) => {
     const { navigation } = props;
@@ -33,12 +31,10 @@ const Main = (props) => {
     } = useDataContext();
     const { width } = useWindowDimensions();
     const bottomSheetModalRef = useRef(null);
+    const bottomSheetModalRefScanner = useRef(null);
     const handlePresentModalPress = useCallback(() => {
         bottomSheetModalRef.current?.present();
     }, []);
-
-    const [showScanner, setShowScanner] = useState(false);
-
 
     useEffect(() => {
         //requestLocationPermission();
@@ -116,7 +112,7 @@ const Main = (props) => {
               );
               if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                 // If CAMERA Permission is granted
-                setShowScanner(true);
+                bottomSheetModalRefScanner.current?.present();
               } else {
                 Alert.alert('CAMERA permission denied');
               }
@@ -128,48 +124,9 @@ const Main = (props) => {
           // Calling the camera permission function
           requestCameraPermission();
         } else {
-          setShowScanner(true);
+            bottomSheetModalRefScanner.current?.present();
         }
     };
-
-    if (showScanner) {
-        return (
-            <View style={{flex: 1}}>
-                <View style={{ flex: 0.25, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={fontStyles.detailHeader}>Search talent by barcode</Text>
-                </View>
-                <View style={{ 
-                    flex: 0.5, 
-                    padding: 20,
-                    borderRadius: 20
-                }}>
-                    <Camera
-                        style={{ flex: 1 }}
-                        ratioOverlay={['1:1']}
-                        showFrame={false}
-                        // Show/hide scan frame
-                        scanBarcode={true}
-                        // Can restrict for the QR Code only
-                        laserColor={'blue'}
-                        // Color can be of your choice
-                        frameColor={'yellow'}
-                        // If frame is visible then frame color
-                        colorForScannerFrame={'white'}
-                        // Scanner Frame color
-                        onReadCode={(event) => {
-                            setShowScanner(false)
-                            Linking.openURL(event.nativeEvent.codeStringValue)
-                        }}
-                    />
-                </View>
-                <View style={{ flex: 0.25, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[fontStyles.mainBody, { color: palette.accent3 }]} onPress={() => setShowScanner(false)}>
-                        Cancel
-                    </Text>
-                </View>
-            </View>
-        )
-    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -252,6 +209,8 @@ const Main = (props) => {
                 ref={bottomSheetModalRef}
                 onApply={(val) => handleSearchSetting(val)}
             />
+            {/* Scanner */}
+            <Scanner ref={bottomSheetModalRefScanner} />
         </SafeAreaView>
     )
 }
