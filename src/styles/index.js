@@ -46,5 +46,6 @@ export const palette = {
     neutral: 'grey',
     neutral2: 'lightgrey',
     accent: '#C23934',
-    accent2: '#E3E7EE'
+    accent2: '#E3E7EE',
+    accent3: '#007AFF'
 }

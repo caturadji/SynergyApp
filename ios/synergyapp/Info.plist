@@ -48,6 +48,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>For taking photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For saving photos</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Need your location to get nearest talents</string>
 	<key>NSLocationAlwaysUsageDescription</key>

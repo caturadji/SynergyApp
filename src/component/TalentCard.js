@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import {
     TouchableOpacity,
     StyleSheet,
@@ -27,7 +27,7 @@ const TalentCard = (props) => {
         divider: { 
             height: 1, 
             width: '100%', 
-            backgroundColor: palette.neutral2,
+            backgroundColor: palette.accent2,
         },
         talentContainer: {
             flex: 1,
@@ -81,4 +81,4 @@ TalentCard.propTypes = {
     onPress: PropTypes.func.isRequired,
 }
 
-export default TalentCard;
+export default memo(TalentCard);

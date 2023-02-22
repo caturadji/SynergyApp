@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 import { fontStyles, palette } from "../styles";
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -30,7 +31,14 @@ const SearchSetting = React.forwardRef((props, ref) => {
   ]
 
   // variables
-  const snapPoints = useMemo(() => ['95%', '95%'], []);
+  const snapPoints = useMemo(() => {
+    if (Platform.OS == 'ios') {
+      return ['95%', '95%']
+    } else if (Platform.OS == 'android') {
+      return ['100%', '100%']
+    }
+    
+  }, []);
 
   const handleSheetChanges = useCallback((index) => {
     // console.log('handleSheetChanges', index);
@@ -78,14 +86,14 @@ const SearchSetting = React.forwardRef((props, ref) => {
         {/* Header */}
         <View style={styles.containerHeader}>
           <Text
-            style={[fontStyles.mainBody, { color: '#007AFF' }]}
+            style={[fontStyles.mainBody, { color: palette.accent3 }]}
             onPress={() => ref.current?.close()}
           >
             Cancel
           </Text>
           <Text style={fontStyles.mainHeader}>Filter Settings</Text>
           <Text
-            style={[fontStyles.mainBody, { color: '#007AFF' }]}
+            style={[fontStyles.mainBody, { color: palette.accent3 }]}
             onPress={() => onApply({ sortBy, sortType })}
           >
             Apply
@@ -117,7 +125,7 @@ const SearchSetting = React.forwardRef((props, ref) => {
                           <AntDesign
                             name='check'
                             size={18}
-                            color={'#007AFF'}
+                            color={palette.accent3}
                             style={{ marginRight: 8 }}
                           />
                         }

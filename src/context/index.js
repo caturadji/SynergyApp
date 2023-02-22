@@ -17,7 +17,10 @@ const DataContext = createContext({
     talentList: [],
     updateLastVisitedTalent: () => {},
     sort: () => {},
-    search: () => {}
+    search: () => {},
+    searchText: '',
+    sortBy: '',
+    sortType: ''
 });
 
 export const useDataContext = () => {
@@ -123,7 +126,10 @@ const DataContextProvider = (props) => {
         talentList: listData, 
         updateLastVisitedTalent: (item) => onUpdateLastVisitedTalent(item),
         sort: (by, type) => sortData(by, type),
-        search: (text) => searchData(text)
+        search: (text) => searchData(text),
+        searchText: searchText,
+        sortBy: sortBy,
+        sortType: sortType
     }
 
     return (

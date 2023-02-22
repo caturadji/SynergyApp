@@ -8,6 +8,10 @@ import {
     Image,
     TextInput,
     useWindowDimensions,
+    Platform,
+    PermissionsAndroid,
+    Alert,
+    Linking
 } from 'react-native';
 import { userdata } from '../data';
 import { TalentCard, SearchSetting } from '../component';
@@ -15,17 +19,26 @@ import { fontStyles, palette } from "../styles";
 import { useDataContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Camera } from 'react-native-camera-kit';
 
 const Main = (props) => {
     const { navigation } = props;
-    const { talentList, sort, search } = useDataContext();
+    const { 
+        talentList, 
+        sort, 
+        search,
+        sortBy,
+        sortType,
+        searchText
+    } = useDataContext();
     const { width } = useWindowDimensions();
     const bottomSheetModalRef = useRef(null);
     const handlePresentModalPress = useCallback(() => {
         bottomSheetModalRef.current?.present();
     }, []);
 
-    const [searchText, setSearchText] = useState('');
+    const [showScanner, setShowScanner] = useState(false);
+
 
     useEffect(() => {
         //requestLocationPermission();
@@ -43,11 +56,6 @@ const Main = (props) => {
             sort('rating', value.sortType)
         }
         bottomSheetModalRef.current?.close();
-    }
-
-    const onChangeSearchText = (text) => {
-        setSearchText(text);
-        search(text);
     }
 
     const styles = StyleSheet.create({
@@ -78,15 +86,90 @@ const Main = (props) => {
             justifyContent: 'space-between',
             flexDirection: 'row',
             alignItems: 'center',
-            width: '85%'
+            margin: 15
         },
-        searchContainer: { 
+        filterContainer: { 
           flexDirection: 'row', 
           alignItems: 'center',
           justifyContent: 'space-between',
-          margin: 15
+          marginHorizontal: 15,
+          marginBottom: 5,
+
+        },
+        sortContainer: { 
+          flexDirection: 'row', 
+          alignItems: 'center',
         }
     })
+
+    const onOpenScanner = () => {
+        // To Start Scanning
+        if (Platform.OS === 'android') {
+          async function requestCameraPermission() {
+            try {
+              const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.CAMERA,
+                {
+                  title: 'Camera Permission',
+                  message: 'App needs permission for camera access',
+                },
+              );
+              if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                // If CAMERA Permission is granted
+                setShowScanner(true);
+              } else {
+                Alert.alert('CAMERA permission denied');
+              }
+            } catch (err) {
+                Alert.alert('Camera permission err', err);
+                console.warn(err);
+            }      
+          }
+          // Calling the camera permission function
+          requestCameraPermission();
+        } else {
+          setShowScanner(true);
+        }
+    };
+
+    if (showScanner) {
+        return (
+            <View style={{flex: 1}}>
+                <View style={{ flex: 0.25, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={fontStyles.detailHeader}>Search talent by barcode</Text>
+                </View>
+                <View style={{ 
+                    flex: 0.5, 
+                    padding: 20,
+                    borderRadius: 20
+                }}>
+                    <Camera
+                        style={{ flex: 1 }}
+                        ratioOverlay={['1:1']}
+                        showFrame={false}
+                        // Show/hide scan frame
+                        scanBarcode={true}
+                        // Can restrict for the QR Code only
+                        laserColor={'blue'}
+                        // Color can be of your choice
+                        frameColor={'yellow'}
+                        // If frame is visible then frame color
+                        colorForScannerFrame={'white'}
+                        // Scanner Frame color
+                        onReadCode={(event) => {
+                            setShowScanner(false)
+                            Linking.openURL(event.nativeEvent.codeStringValue)
+                        }}
+                    />
+                </View>
+                <View style={{ flex: 0.25, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[fontStyles.mainBody, { color: palette.accent3 }]} onPress={() => setShowScanner(false)}>
+                        Cancel
+                    </Text>
+                </View>
+            </View>
+        )
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -103,37 +186,49 @@ const Main = (props) => {
                 />
             </View>
             {/* Searchbar */}
-            <View style={styles.searchContainer}>
-              <View style={styles.searchbar}> 
-                <View style={{ flexDirection: 'row' }}>
-                  <AntDesign
-                      name='search1'
-                      size={20}
-                      color={palette.neutral}
-                      style={{ marginRight: 8 }}
-                  />
-                  <TextInput
-                      placeholder='Search talents ...'
-                      style={fontStyles.detailDesc}
-                      onChangeText={(text) => onChangeSearchText(text)}
-                      value={searchText}
-                  />
-                </View>
+            <View style={styles.searchbar}> 
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <AntDesign
-                    name='scan1'
+                    name='search1'
                     size={20}
                     color={palette.neutral}
+                    style={{ marginRight: 8 }}
                 />
-              </View>
-              <View style={{ width: '17%', alignItems: 'center'}}>
+                <TextInput
+                    placeholder='Search talents ...'
+                    style={fontStyles.detailDesc}
+                    onChangeText={(text) => search(text)}
+                    value={searchText}
+                />
+            </View>
+            <AntDesign
+                name='scan1'
+                size={20}
+                color={palette.neutral}
+                onPress={() => onOpenScanner()}
+            />
+            </View>
+            {/* Sort Area */}
+            <View style={styles.filterContainer}>
+                <View style={styles.sortContainer}>
+                    <Text style={[fontStyles.mainBody, { color: palette.neutral}]}>
+                        {String(sortBy).charAt(0).toUpperCase() + 
+                        String(sortBy).slice(1)}
+                    </Text>
+                    <AntDesign
+                        name={sortType == 'Descending' ? 'arrowdown' : 'arrowup'}
+                        size={15}
+                        color={palette.neutral}
+                    />
+                </View>
                 <Ionicons
                     name='filter'
-                    size={25}
+                    size={20}
                     color={palette.neutral}
                     onPress={handlePresentModalPress}
                 />
-              </View>
             </View>
+                
             {/* List Talent */}
             <View style={{ flex: 1 }}>
                 <FlatList
