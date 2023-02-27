@@ -26,8 +26,8 @@
 		53AFE80C297454C800779C34 /* TalentsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 53AFE7F8297454C700779C34 /* TalentsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		53C4743429A1210200F2B950 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53C4743329A1210200F2B950 /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BDD66C198B201DC381FBBA32 /* libPods-synergyapp-synergyappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B53A19BAAF4BB5D9116F5D /* libPods-synergyapp-synergyappTests.a */; };
 		CEAD001CEF469DA2414E2CC7 /* libPods-synergyapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B923B6A04B0AD2911B49E6F7 /* libPods-synergyapp.a */; };
-		E28CE6F47AA39C0C9D1D9368 /* libPods-synergyapp-synergyappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B93CB18E4F9642FC3CB4C13E /* libPods-synergyapp-synergyappTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,9 +89,9 @@
 		53AFE8172974DDF000779C34 /* synergyapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = synergyapp.entitlements; path = synergyapp/synergyapp.entitlements; sourceTree = "<group>"; };
 		53AFE8182974E0A100779C34 /* TalentsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TalentsWidgetExtension.entitlements; sourceTree = "<group>"; };
 		53C4743329A1210200F2B950 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		77B53A19BAAF4BB5D9116F5D /* libPods-synergyapp-synergyappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-synergyapp-synergyappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = synergyapp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B923B6A04B0AD2911B49E6F7 /* libPods-synergyapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-synergyapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B93CB18E4F9642FC3CB4C13E /* libPods-synergyapp-synergyappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-synergyapp-synergyappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E28CE6F47AA39C0C9D1D9368 /* libPods-synergyapp-synergyappTests.a in Frameworks */,
+				BDD66C198B201DC381FBBA32 /* libPods-synergyapp-synergyappTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +164,7 @@
 				53AFE7F9297454C700779C34 /* WidgetKit.framework */,
 				53AFE7FB297454C700779C34 /* SwiftUI.framework */,
 				B923B6A04B0AD2911B49E6F7 /* libPods-synergyapp.a */,
-				B93CB18E4F9642FC3CB4C13E /* libPods-synergyapp-synergyappTests.a */,
+				77B53A19BAAF4BB5D9116F5D /* libPods-synergyapp-synergyappTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

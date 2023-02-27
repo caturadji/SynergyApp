@@ -58,6 +58,8 @@
 	<string>Need your location to get nearest talents</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need your location to get nearest talents</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>$(PRODUCT_NAME) Authentication with TouchId or FaceID</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

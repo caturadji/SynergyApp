@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef, memo } from "react";
 import {
     View,
     Text,
@@ -75,4 +75,4 @@ const Scanner = React.forwardRef((props, ref) => {
     )
 })
 
-export default Scanner;
+export default memo(Scanner);

@@ -8,7 +8,6 @@ import {
     isNaviagtionReadyRef,
     navigationRef
 } from '../function';
-import { registerNotification } from '../function';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,11 +44,6 @@ const StackNavigation = () => {
             resetURL();
         } 
     }, [resetURL, triggerDeepLink]);
-
-    useEffect(() => {
-        registerNotification()
-    }, [])
-
 
     return (
         <NavigationContainer

@@ -122,4 +122,4 @@ const Detail = (props) => {
     )
 }
 
-export default React.memo(Detail);
+export default Detail;

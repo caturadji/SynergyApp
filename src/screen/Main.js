@@ -18,6 +18,7 @@ import { fontStyles, palette } from "../styles";
 import { useDataContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { registerNotification } from '../function';
 
 const Main = (props) => {
     const { navigation } = props;
@@ -39,6 +40,7 @@ const Main = (props) => {
     useEffect(() => {
         //requestLocationPermission();
         //return () =>  Geolocation.clearWatch(watchID);
+        registerNotification();
     }, [])
 
     const handleSearchSetting = (value) => {
@@ -77,7 +79,8 @@ const Main = (props) => {
         },
         searchbar: {
             borderRadius: 10,
-            padding: width * 3 /100,
+            padding: Platform.OS == 'android' ? 0 : 15,
+            paddingHorizontal: 10,
             backgroundColor: palette.accent2,
             justifyContent: 'space-between',
             flexDirection: 'row',

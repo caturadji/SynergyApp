@@ -4,5 +4,5 @@ export {
     navigationRef, 
     RootNavigation
 } from './RootNavigation';
-export { registerNotification, registerRemoteNotification } from './Notifications';
+export { requestNotificationPermission, registerNotification } from './Notifications';
 export { requestLocationPermission, getOneTimeLocation, subscribeLocationLocation, sortDinstanceList } from './Location';
