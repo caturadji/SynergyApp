@@ -14,7 +14,7 @@ export const requestNotificationPermission = () => {
           },
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          // If CAMERA Permission is granted
+          // If Notification Permission is granted
           registerRemoteNotification();
           registerNotification();
         } else {
@@ -25,14 +25,16 @@ export const requestNotificationPermission = () => {
           console.warn(err);
       }      
     }
-    // Calling the camera permission function
+    // Calling the notification permission function
     if (Platform.Version < 33) {
         registerRemoteNotification();
+        registerNotification();
     } else {
         requestNotifPermission();
     }
   } else {
       registerRemoteNotification();
+      registerNotification()
   }
 }
 

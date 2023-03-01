@@ -41,8 +41,6 @@ const DataContextProvider = (props) => {
         image: ''
     };
 
-    console.log('Data Context Loading')
-
     const shareData = async (allTalent, lastVisit) => {
         let widgetData = allTalent.slice(0, 4).map(e => { return {
             id: e.id,
@@ -164,9 +162,6 @@ const LikeContextProvider = (props) => {
         setLikedTalent([..._listLiked]);
     }
 
-    console.log('Like Context Loading')
-
-
     const value = {
         updateLike: (id) => updateLikeByID(id),
         likedTalent: likedTalent
@@ -181,9 +176,6 @@ const LikeContextProvider = (props) => {
 }
 
 export const ContextProvider = (props) => {
-
-    console.log('Main Context Loading')
-
     return (
         <DataContextProvider>
             <LikeContextProvider>

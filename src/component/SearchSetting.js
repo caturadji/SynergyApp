@@ -91,7 +91,7 @@ const SearchSetting = React.forwardRef((props, ref) => {
           >
             Cancel
           </Text>
-          <Text style={fontStyles.mainHeader}>Filter Settings</Text>
+          <Text style={fontStyles.mainHeader}>Sort Settings</Text>
           <Text
             style={[fontStyles.mainBody, { color: palette.accent3 }]}
             onPress={() => onApply({ sortBy, sortType })}

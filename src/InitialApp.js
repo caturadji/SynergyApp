@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
+  View,
+  Button,
+  Text
 } from 'react-native';
 import { StackNavigation } from './navigation';
 import { requestNotificationPermission } from './function';
 import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics';
+import { fontStyles } from './styles';
 
 
-// const rnBiometrics = new ReactNativeBiometrics({ allowDeviceCredentials: true }); // Allow pin code
-const rnBiometrics = new ReactNativeBiometrics();
+const rnBiometrics = new ReactNativeBiometrics({ allowDeviceCredentials: true }); // Allow pin code
+// const rnBiometrics = new ReactNativeBiometrics();
 
 const App = () => {
   const backgroundStyle = {
@@ -117,11 +121,22 @@ const App = () => {
       })
   }
 
+  const renderBody = () => {
+    if (isBimetricsConfirmed) {
+      return <StackNavigation/>
+    } else {
+      return ( 
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={[fontStyles.detailBody, { margin: 15 }]}>You need confirm your identity first</Text>
+          <Button title='Confirm' onPress={checkBiometricsSensor}/>
+        </View>
+      )
+    }
+  }
+
   return (
         <SafeAreaView style={backgroundStyle}>
-            {isBimetricsConfirmed &&
-                <StackNavigation/>
-            }
+          {renderBody()}
         </SafeAreaView>
   );
 }

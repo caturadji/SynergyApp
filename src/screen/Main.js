@@ -7,10 +7,11 @@ import {
     StyleSheet,
     Image,
     TextInput,
-    useWindowDimensions,
     Platform,
     PermissionsAndroid,
     Alert,
+    TouchableOpacity,
+    Keyboard
 } from 'react-native';
 import { userdata } from '../data';
 import { TalentCard, SearchSetting, Scanner } from '../component';
@@ -18,7 +19,6 @@ import { fontStyles, palette } from "../styles";
 import { useDataContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { registerNotification } from '../function';
 
 const Main = (props) => {
     const { navigation } = props;
@@ -30,18 +30,12 @@ const Main = (props) => {
         sortType,
         searchText
     } = useDataContext();
-    const { width } = useWindowDimensions();
     const bottomSheetModalRef = useRef(null);
     const bottomSheetModalRefScanner = useRef(null);
     const handlePresentModalPress = useCallback(() => {
+        Keyboard.dismiss()
         bottomSheetModalRef.current?.present();
     }, []);
-
-    useEffect(() => {
-        //requestLocationPermission();
-        //return () =>  Geolocation.clearWatch(watchID);
-        registerNotification();
-    }, [])
 
     const handleSearchSetting = (value) => {
         if (value.sortBy == 'Nearest') {
@@ -102,6 +96,7 @@ const Main = (props) => {
     })
 
     const onOpenScanner = () => {
+        Keyboard.dismiss();
         // To Start Scanning
         if (Platform.OS === 'android') {
           async function requestCameraPermission() {
@@ -152,11 +147,11 @@ const Main = (props) => {
                     name='search1'
                     size={20}
                     color={palette.neutral}
-                    style={{ marginRight: 8 }}
+                    style={{ width: '13%' }}
                 />
                 <TextInput
                     placeholder='Search talents ...'
-                    style={fontStyles.detailDesc}
+                    style={[fontStyles.detailDesc, { width: '80%'}]}
                     onChangeText={(text) => search(text)}
                     value={searchText}
                 />
@@ -166,28 +161,33 @@ const Main = (props) => {
                 size={20}
                 color={palette.neutral}
                 onPress={() => onOpenScanner()}
+                style={{ width: '7%'}}
             />
             </View>
             {/* Sort Area */}
-            <View style={styles.filterContainer}>
-                <View style={styles.sortContainer}>
-                    <Text style={[fontStyles.mainBody, { color: palette.neutral}]}>
-                        {String(sortBy).charAt(0).toUpperCase() + 
-                        String(sortBy).slice(1)}
-                    </Text>
-                    <AntDesign
-                        name={sortType == 'Descending' ? 'arrowdown' : 'arrowup'}
-                        size={15}
+            <TouchableOpacity 
+                onPress={handlePresentModalPress}
+                activeOpacity={1}
+            >
+                <View style={styles.filterContainer}>
+                    <View style={styles.sortContainer}>
+                        <Text style={[fontStyles.mainBody, { color: palette.neutral}]}>
+                            {String(sortBy).charAt(0).toUpperCase() + 
+                            String(sortBy).slice(1)}
+                        </Text>
+                        <AntDesign
+                            name={sortType == 'Descending' ? 'arrowdown' : 'arrowup'}
+                            size={15}
+                            color={palette.neutral}
+                        />
+                    </View>
+                    <Ionicons
+                        name='filter'
+                        size={20}
                         color={palette.neutral}
                     />
                 </View>
-                <Ionicons
-                    name='filter'
-                    size={20}
-                    color={palette.neutral}
-                    onPress={handlePresentModalPress}
-                />
-            </View>
+            </TouchableOpacity>
                 
             {/* List Talent */}
             <View style={{ flex: 1 }}>
