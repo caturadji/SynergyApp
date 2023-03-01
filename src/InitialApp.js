@@ -11,8 +11,8 @@ import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics';
 import { fontStyles } from './styles';
 
 
-const rnBiometrics = new ReactNativeBiometrics({ allowDeviceCredentials: true }); // Allow pin code
-// const rnBiometrics = new ReactNativeBiometrics();
+// const rnBiometrics = new ReactNativeBiometrics({ allowDeviceCredentials: true }); // Allow pin code
+const rnBiometrics = new ReactNativeBiometrics();
 
 const App = () => {
   const backgroundStyle = {
