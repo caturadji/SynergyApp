@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import {
     View,
     Text,
@@ -19,6 +19,9 @@ import { fontStyles, palette } from "../styles";
 import { useDataContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import messaging from '@react-native-firebase/messaging';
+import notifee, { EventType } from '@notifee/react-native';
+
 
 const Main = (props) => {
     const { navigation } = props;
@@ -49,6 +52,57 @@ const Main = (props) => {
         }
         bottomSheetModalRef.current?.close();
     }
+
+    const unsubscribeForeground = notifee.onForegroundEvent(({ type, detail }) => {
+        console.log('Type', type)
+        switch (type) {
+            case EventType.DISMISSED:
+                console.log('User dismissed notification', detail.notification);
+                break;
+            case EventType.PRESS:
+                console.log('User pressed notification', detail.notification);
+                break;
+            default: 
+                console.log('default')
+                break
+        }
+    });
+
+    async function onMessageReceived(message) {
+        await notifee.requestPermission()
+        
+        // Create a channel (required for Android)
+        const channelId = await notifee.createChannel({
+            id: 'default',
+            name: 'Default Channel',
+        });
+
+        // Do something
+        console.log('Ini Message ', message)
+
+        notifee.displayNotification({
+            title: message.notification.title,
+            body: message.notification.body,
+            android: {
+                channelId,
+                // pressAction is needed if you want the notification to open the app when pressed
+                pressAction: {
+                    id: 'default',
+                },
+            },
+        });
+    }
+
+    useEffect(() => {
+        let subscribeForeground = messaging().onMessage(onMessageReceived);
+        let subscribeBackground = messaging().setBackgroundMessageHandler(onMessageReceived);
+
+        return () => {
+            subscribeBackground,
+            subscribeForeground(),
+            unsubscribeForeground()
+        }
+    })
 
     const styles = StyleSheet.create({
         container: { 

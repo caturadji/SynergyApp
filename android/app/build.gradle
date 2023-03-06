@@ -168,8 +168,6 @@ dependencies {
 
     implementation project(":react-native-notifications")
 
-    implementation ("com.google.firebase:firebase-core:16.0.0")
-
     implementation platform('com.google.firebase:firebase-bom:30.1.0')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")

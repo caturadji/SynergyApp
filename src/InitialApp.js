@@ -9,6 +9,7 @@ import { StackNavigation } from './navigation';
 import { requestNotificationPermission } from './function';
 import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics';
 import { fontStyles } from './styles';
+import notifee, { EventType } from '@notifee/react-native';
 
 
 // const rnBiometrics = new ReactNativeBiometrics({ allowDeviceCredentials: true }); // Allow pin code
@@ -21,10 +22,19 @@ const App = () => {
 
   const [isBimetricsConfirmed, setIsBimetricsConfirmed] = useState(false);
 
+  async function bootstrap() {
+    const initialNotification = await notifee.getInitialNotification();
+
+    if (initialNotification) {
+      console.log('Notification caused application to open', initialNotification.notification);
+      console.log('Press action used to open the app', initialNotification.pressAction);
+    }
+  }
 
   useEffect(() => {
     requestNotificationPermission();
     checkBiometricsSensor();
+    bootstrap();
   },[]) 
 
   const checkBiometricsSensor = () => {

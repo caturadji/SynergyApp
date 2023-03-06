@@ -13,6 +13,7 @@
 {
   // Added for notification
   [RNNotifications startMonitorNotifications];
+  [FIRApp configure];
   self.moduleName = @"synergyapp";
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }

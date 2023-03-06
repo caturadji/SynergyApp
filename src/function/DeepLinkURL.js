@@ -25,8 +25,8 @@ export default function useDeepLinkURL() {
       setLinkedURL(url.url);
     };
 
-    Linking.addEventListener('url', callback);
-    return () => Linking.removeEventListener('url', callback);
+    const listener = Linking.addEventListener('url', callback);
+    return () => listener.remove();
   }, []);
 
   const resetURL = () => {
